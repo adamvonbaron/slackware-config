@@ -1,0 +1,13 @@
+# ignore kernel packages - build and install kernel manually (but copy config from Slackware)
+kernel-generic.*
+kernel-huge.*
+kernel-modules.*
+kernel-source.*
+kernel-firmware.*
+kernel-headers.*
+
+# dont let slackpkg delete or modify slackbuilds
+[0-9]+_SBo
+
+# dont delete sbopkg itself
+sbopkg-*
