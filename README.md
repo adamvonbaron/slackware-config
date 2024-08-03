@@ -6,3 +6,4 @@
 $ sudo hciconfig hci0 down
 $ sudo hciconfig hci0 up
 ```
+3. mkinitrd command is in mkinitrd.sh
