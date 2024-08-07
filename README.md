@@ -48,3 +48,7 @@ menuentry 'Slackware UEFI UKI' {
         chainloader /boot/efi/EFI/Linux/linux-6.9.12-frampt.efi
 }
 ```
+
+
+todo: describe how to build/sign nvidia kernel modules and add to initramfs
+https://download.nvidia.com/XFree86/Linux-x86/361.45.18/README/installdriver.html#modulesigning
