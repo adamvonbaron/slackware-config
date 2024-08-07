@@ -52,3 +52,25 @@ menuentry 'Slackware UEFI UKI' {
 
 todo: describe how to build/sign nvidia kernel modules and add to initramfs
 https://download.nvidia.com/XFree86/Linux-x86/361.45.18/README/installdriver.html#modulesigning
+
+notes to flesh out for finalizing secure boot
+
+1. dont use grub. use systemd-boot
+2. use dracut and create a UKI with it. systemd-boot will automatically provide it as
+a boot option if it is stored at $ESP/EFI/Linux
+3. i probably need to both sign my nvidia kernel modules with my db (shown how to above)
+and also keep microsoft's KEK and db certificates in my UEFI NVRAM. I found that not having
+Microsoft's keys in my nvram caused my Asus z790 motherboard to raise a secure boot violation
+regarding my GPU, and I likely cannot boot my kernel if the modules themselves aren't signed.
+4. follow arch wiki on how to manually install systemd-boot
+5. Enable the kernel config options CONFIG_MODULE_SIG, CONFIG_MODULE_SIG_ALL,
+MODULE_SIG_SHA3_256, and set CONFIG_MODULE_SIG_KEY equal to the location of a file containing
+your db private key and certificate in one file, in PEM format. 
+you probably just need to do this:
+```sh
+$ cat db.priv db.pub > db.pem
+```
+yes they look different (one is ascii base64, the private key, and the public key is... im not sure what it is yet).
+the other options tell the kernel's Makefile to build the `sign-file` commmand in /scripts, which will sign
+kernel modules with the provided keypair when running `make modules_install`. 
+6. only efi binaries can be signed with `sbsign`. this will be systemd-boot itself and the uki created by dracut
