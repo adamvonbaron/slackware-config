@@ -74,3 +74,11 @@ yes they look different (one is ascii base64, the private key, and the public ke
 the other options tell the kernel's Makefile to build the `sign-file` commmand in /scripts, which will sign
 kernel modules with the provided keypair when running `make modules_install`. 
 6. only efi binaries can be signed with `sbsign`. this will be systemd-boot itself and the uki created by dracut
+
+
+additional notes to flesh out
+1. need to have tmpfs support in kernel for elogind (sets seats, XDG_RUNTIME_DIR, etc)
+2. if Chrome is blurry enable Auto/Wayland Ozone backend. If it is flickering disable GPU acceleration
+3. need to rebuild Emacs with pgtk to have hidpi support. Slackware's package is bad on hidpi displays
+4. labwc is in -current as of 3/19/25
+5. might need simpledrm for TTY output in initramfs? even with nvidia proprietary kernel module.
