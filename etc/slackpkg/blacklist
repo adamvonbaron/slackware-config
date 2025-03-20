@@ -11,3 +11,6 @@ kernel-headers.*
 
 # dont delete sbopkg itself
 sbopkg-*
+
+# don't delete extra packages
+google-chrome-*
