@@ -55,7 +55,7 @@ menuentry 'Slackware UEFI UKI' {
         insmod fat
         insmod chain
         search --no-floppy --fs-uuid --set=root UUID
-        chainloader /boot/efi/EFI/Linux/linux-6.9.12-frampt.efi
+        chainloader (hd0,gpt1)/efi/Linux/linux-6.9.12-frampt.efi
 }
 ```
 
