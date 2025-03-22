@@ -43,6 +43,11 @@ $ meson setup --reconfigure build
 $ DESTDIR=./dest meson install
 ```
 
+To enroll your own SecureBoot keys, you will need efitools and sbsigntools.
+Slackware doesn't package these, so you will have to build them manually.
+efitools requires a patch for strptime, need to `#define _XOPEN_SOURCE`
+and `#define _GNU_SOURCE` and then need to install the File::Slurp CPAN module
+
 3. sign UKI with db key
 ```sh
 $ sbsign --key db.priv --cert db.pub --output /boot/efi/EFI/Linux/linux-frampt.efi /boot/efi/EFI/Linux/linux-frampt.efi
