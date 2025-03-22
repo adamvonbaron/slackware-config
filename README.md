@@ -33,6 +33,16 @@ $ cp ./build/dest/usr/lib/systemd/boot/* /usr/lib/systemd/boot
 $ dracut --host-only --uefi --kernel-image /boot/vmlinuz-frampt
 ```
 
+systemd's UEFI boot stub needs to be present for `dracut --uefi` to work. If it's not
+present, you can install it by first installing pyelftools then reconfiguring the systemd
+build:
+```sh
+$ pip3 install pyelftools
+$ meson configure build -Dbootloader=enabled
+$ meson setup --reconfigure build
+$ DESTDIR=./dest meson install
+```
+
 3. sign UKI with db key
 ```sh
 $ sbsign --key db.priv --cert db.pub --output /boot/efi/EFI/Linux/linux-frampt.efi /boot/efi/EFI/Linux/linux-frampt.efi
